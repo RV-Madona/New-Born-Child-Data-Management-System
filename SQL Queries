@@ -1,0 +1,128 @@
+1.BILLS:
+ CREATE TABLE `bills` (
+  `BillID` int NOT NULL,
+  `BillAmount` int NOT NULL,
+  `MotherID_4` int NOT NULL,
+  `DoctorFee` int NOT NULL,
+  `MedicinalExpenses` int NOT NULL,
+  `RoomFee` int NOT NULL,
+  `TaxAmount` int NOT NULL,
+  PRIMARY KEY (`BillID`),
+  KEY `MotherID_4_idx` (`MotherID_4`),
+  CONSTRAINT `MotherID_4` FOREIGN KEY (`MotherID_4`) REFERENCES `mother` (`MotherID`)
+) 
+
+2.CHILD: 
+  CONSTRAINT `RoomNumber_3` FOREIGN KEY (`RoomNumber_3`) REFERENCES `rooms` (`RoomNumber`)CREATE TABLE `child` (
+  `ChildID` int NOT NULL,
+  `MotherID_2` int NOT NULL,
+  `BornDate` date NOT NULL,
+  `RoomNumber_3` int NOT NULL,
+  `DoctorID_3` int NOT NULL,
+  `BloodGroup` varchar(45) NOT NULL,
+  `Sex` varchar(45) NOT NULL,
+  `Weight` varchar(45) NOT NULL,
+  `HospitalName_3` varchar(45) NOT NULL,
+  `CityName_3` varchar(45) NOT NULL,
+  PRIMARY KEY (`ChildID`),
+  KEY `DoctorID_3_idx` (`DoctorID_3`),
+  KEY `RoomNumber_3_idx` (`RoomNumber_3`),
+  KEY `CityName_3_idx` (`CityName_3`),
+  KEY `HospitalName_3_idx` (`HospitalName_3`),
+  CONSTRAINT `CityName_3` FOREIGN KEY (`CityName_3`) REFERENCES `city` (`CityName`),
+  CONSTRAINT `DoctorID_3` FOREIGN KEY (`DoctorID_3`) REFERENCES `doctor` (`DoctorID`),
+  CONSTRAINT `HospitalName_3` FOREIGN KEY (`HospitalName_3`) REFERENCES `hospital` (`HospitalName`),
+)
+
+
+3.CITY:
+CREATE TABLE `city` (
+  `CityName` varchar(45) NOT NULL,
+  `CityCode` int NOT NULL,
+  `NoOfHospital` int NOT NULL,
+  PRIMARY KEY (`CityName`)
+)
+
+4.DOCTOR:
+CREATE TABLE `doctor` (
+  `DoctorID` int NOT NULL,
+  `DoctorName` varchar(45) NOT NULL,
+  `HospitalName_8` varchar(45) NOT NULL,
+  `CaseID` int NOT NULL,
+  `CityName_4` varchar(45) NOT NULL,
+  `CabinNumber` int NOT NULL,
+  PRIMARY KEY (`DoctorID`),
+  KEY `HospitalName_8_idx` (`HospitalName_8`),
+  KEY `CityName_4_idx` (`CityName_4`),
+  CONSTRAINT `CityName_4` FOREIGN KEY (`CityName_4`) REFERENCES `city` (`CityName`),
+  CONSTRAINT `HospitalName_8` FOREIGN KEY (`HospitalName_8`) REFERENCES `hospital` (`HospitalName`)
+)
+
+
+5.HOSPITAL:
+ CREATE TABLE `hospital` (
+  `HospitalID` int NOT NULL,
+  `HospitalName` varchar(45) NOT NULL,
+  `NoOfRooms` int NOT NULL,
+  `CityName_5` varchar(45) NOT NULL,
+  `Area` varchar(45) NOT NULL,
+  `NoOfDoctors` int NOT NULL,
+  `NoOfPatients` int NOT NULL,
+  `AmbulanceSerNumber` int NOT NULL,
+  `HospitalDeanName` varchar(45) NOT NULL,
+  PRIMARY KEY (`HospitalID`,`HospitalName`),
+  KEY `CityName_5_idx` (`CityName_5`),
+  KEY `HospitalName` (`HospitalName`),
+  KEY `HospitalID` (`HospitalID`),
+  CONSTRAINT `CityName_5` FOREIGN KEY (`CityName_5`) REFERENCES `city` (`CityName`)
+) 
+
+
+6.MOTHER:
+ CREATE TABLE `mother` (
+  `MotherID` int NOT NULL,
+  `MotherName` varchar(45) NOT NULL,
+  `Age` int NOT NULL,
+  `HospitalName_22` varchar(45) NOT NULL,
+  `DOB` date NOT NULL,
+  `CityName_2` varchar(45) NOT NULL,
+  `ChildID_2` int NOT NULL,
+  `DoctorID_2` int NOT NULL,
+  `BillID_2` int NOT NULL,
+  `RoomNumber_2` int NOT NULL,
+  PRIMARY KEY (`MotherID`),
+  KEY `HospitalName_2_idx` (`HospitalName_22`),
+  KEY `HospitalName_22_idx` (`HospitalName_22`),
+  KEY `ChildID_2_idx` (`ChildID_2`),
+  KEY `DoctorID_2_idx` (`DoctorID_2`),
+  KEY `CityName_2_idx` (`CityName_2`),
+  KEY `RoomNumber_2_idx` (`RoomNumber_2`),
+  CONSTRAINT `ChildID_2` FOREIGN KEY (`ChildID_2`) REFERENCES `child` (`ChildID`),
+  CONSTRAINT `CityName_2` FOREIGN KEY (`CityName_2`) REFERENCES `city` (`CityName`),
+  CONSTRAINT `DoctorID_2` FOREIGN KEY (`DoctorID_2`) REFERENCES `doctor` (`DoctorID`),
+  CONSTRAINT `HospitalName_22` FOREIGN KEY (`HospitalName_22`) REFERENCES `hospital` (`HospitalName`),
+  CONSTRAINT `RoomNumber_2` FOREIGN KEY (`RoomNumber_2`) REFERENCES `rooms` (`RoomNumber`)
+)
+
+
+7.ROOMS:
+CREATE TABLE `rooms` (
+  `RoomNumber` int NOT NULL,
+  `FloorNumber` int NOT NULL,
+  `BlockName` v$sql="SELECT * FROM bills WHERE BillID ='$dib'";
+archar(45) NOT NULL,
+  `RoomCheck` varchar(45) NOT NULL,
+  `RoomAvailability` varchar(45) NOT NULL,
+  PRIMARY KEY (`RoomNumber`)
+)
+$sql=SELECT * FROM bills WHERE BillID ='$dib'";
+$sql="SELECT * FROM city WHERE CityID ='$dib'";
+$sql="SELECT * FROM hospital WHERE HospitalID ='$dib'";
+$sql="SELECT * FROM   rooms RoomID ='$dib'";
+$sql="SELECT * FROM doctor WHER DoctorID ='$dib'";
+$sql="SELECT * FROM child WHERE ChildID ='$dib”;
+
+
+
+
+
